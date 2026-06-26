@@ -8,6 +8,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const ManageFood = () => {
   const [foodItems, setFoodItems] = useState([])
   const [allFoodItems, setAllFoodItems] = useState([])
+    const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
   // 🔹 Load food items
   useEffect(() => {
@@ -120,11 +122,21 @@ const ManageFood = () => {
                 <td>{item.is_available ? 'Yes' : 'No'}</td>
                 <td>
                   {item.image ? (
-                    <img
-                      src={`http://127.0.0.1:8000${item.image}`}
-                      alt={item.item_name}
-                      style={{ width: '50px', height: '50px', objectFit: 'cover' }}
-                    />
+                 <img
+                src={
+                  food.image
+                    ? `${BASE_URL}${food.image}`
+                    : "/images/default-food.png"
+                }
+                className="card-img-top"
+                alt={food.name}
+                style={{
+                  width: "100%",
+                  height: "230px",
+                  objectFit: "cover",
+                }}
+              />
+
                   ) : '-'}
                 </td>
                 <td>{new Date(item.creation_date).toLocaleString()}</td>
