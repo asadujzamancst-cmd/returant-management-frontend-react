@@ -459,7 +459,7 @@ const AdminChat = () => {
                       {m.image && (
 
                         <img
-                          src={`http://127.0.0.1:8000${m.image}`}
+                          src={`https://softworktech.com/asad_ecom/${m.image}`}
                           style={{
                             maxWidth: "200px",
                             display: "block",
