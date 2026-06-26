@@ -133,6 +133,7 @@ function App() {
         <Route path="/rider/login" element={<RiderLogin />} />
         <Route path="/rider/dashboard" element={<RiderDashbord />} />
                 <Route path="/riderFood" element={<RiderPickupFood />} />
+                
 
 
             

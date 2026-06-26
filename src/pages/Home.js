@@ -5,12 +5,14 @@ import "../style/Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const [foods, setFoods] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const navigate = useNavigate();
     const BASE_URL = "https://softworktech.com/asad_ecom";
+    const [loading, setLoading] = useState(true);
 
 
 
@@ -92,13 +94,28 @@ useEffect(() => {
 
 }, [foods]);
   // Fetch random foods
-  useEffect(() => {
-    fetch("https://softworktech.com/asad_ecom/api/random_food/")
-      .then((res) => res.json())
-      .then((data) => setFoods(data))
-      .catch((err) => console.error("Failed to fetch food items", err));
-  }, []);
+ useEffect(() => {
+  const fetchFoods = async () => {
+    try {
+      setLoading(true); // ✅ start loading
 
+      const res = await fetch(
+        "https://softworktech.com/asad_ecom/api/random_food/"
+      );
+
+      const data = await res.json();
+      setFoods(data);
+
+    } catch (err) {
+      console.error("Failed to fetch food items", err);
+
+    } finally {
+      setLoading(false); // ✅ ALWAYS stop loading
+    }
+  };
+
+  fetchFoods();
+}, []);
   // ✅ Fetch wishlist
   const fetchWishlist = () => {
     const token = localStorage.getItem("userToken");
@@ -172,6 +189,7 @@ useEffect(() => {
 
   return (
     <PublicLayout>
+      
       <ToastContainer position="top-center" autoClose={1000} />
 
       {/* Hero Section */}
@@ -179,6 +197,7 @@ useEffect(() => {
         className="hero-section py-5 text-center"
         style={{ backgroundImage: 'url("/images/foodH.png")' }}
       >
+        
         <div
           style={{
             backgroundColor: "rgba(0,0,0,0.5)",
@@ -201,12 +220,14 @@ useEffect(() => {
       </section>
 
       {/* Food List */}
+   
       <section className="py-5">
         <div className="container display-flex">
           <h2 className="text-center mb-4">
             Most Loved Dishes This Month{" "}
             <span className="badge bg-danger">Top Picks</span>
           </h2>
+          {loading && <Loading />}
 
           <div className="row mt-4">
             {foods.length === 0 && <p className="text-muted">No food items found.</p>}
@@ -356,6 +377,7 @@ useEffect(() => {
           </div>
         </div>
       </section>
+      
 
       {/* How It Works Section */}
       <section className="text-center">

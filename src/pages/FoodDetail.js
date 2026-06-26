@@ -20,6 +20,8 @@ const FoodDetail = () => {
   const [comment, setComment] = useState("");
   const [hoverRating, setHoverRating] = useState(0);
   const [editId, setEditId] = useState(null);
+    const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
   // Fetch food details
   useEffect(() => {
@@ -207,14 +209,20 @@ const FoodDetail = () => {
         <div className="row align-items-center">
           {/* Image + Heart */}
           <div className="col-md-5 text-center position-relative mb-4 mb-md-0">
-            <Zoom>
-              <img
-                src={food?.image || "/images/default-food.png"}
-                alt={food?.name || food?.item_name}
-                className="img-fluid rounded shadow-sm"
-                style={{ maxHeight: "300px", objectFit: "cover" }}
-              />
-            </Zoom>
+           <Zoom>
+  <img
+    src={
+      food?.image
+        ? `${BASE_URL}${food.image}`
+        : food?.image
+        ? `${BASE_URL}${food.image}`
+        : "/images/default-food.png"
+    }
+    alt={food?.name || food?.name || "food image"}
+    className="img-fluid rounded shadow-sm"
+    style={{ maxHeight: "300px", objectFit: "cover", width: "100%" }}
+  />
+</Zoom>
 
             <i
               className={`fas fa-heart heart position-absolute top-0 end-0 m-3 ${

@@ -9,6 +9,8 @@ const Wishlist = () => {
   const [foods, setFoods] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const navigate = useNavigate();
+    const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
   // ✅ Fetch wishlist
   const fetchWishlist = async () => {
@@ -85,12 +87,18 @@ const Wishlist = () => {
             {foods.map((food) => (
               <div className="col-md-4 mb-4" key={food.id}>
                 <div className="card h-100 position-relative">
-                  <img
-                    src={food.image || "/images/default-food.png"}
-                    className="card-img-top"
-                    alt={food.item_name || food.name}
-                    style={{ height: "200px", objectFit: "cover" }}
-                  />
+                 <img
+    src={
+      food?.image
+        ? `${BASE_URL}${food.image}`
+        : food?.image
+        ? `${BASE_URL}${food.image}`
+        : "/images/default-food.png"
+    }
+    alt={food?.name || food?.name || "food image"}
+    className="img-fluid rounded shadow-sm"
+    style={{ maxHeight: "300px", objectFit: "cover", width: "100%" }}
+  />
                   {/* Remove heart */}
                   <i
                     className="fas fa-heart text-danger position-absolute top-0 end-0 m-2"
