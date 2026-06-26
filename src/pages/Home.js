@@ -10,6 +10,8 @@ const Home = () => {
   const [foods, setFoods] = useState([]);
   const [wishlist, setWishlist] = useState([]);
   const navigate = useNavigate();
+    const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
 
 
@@ -20,7 +22,7 @@ const Home = () => {
     if (!token) return;
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/cart/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/cart/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -68,7 +70,7 @@ useEffect(() => {
     for (const food of foods) {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/food_rating/${food.id}/`
+          `https://softworktech.com/asad_ecom/api/food_rating/${food.id}/`
         );
 
         const data = await res.json();
@@ -91,7 +93,7 @@ useEffect(() => {
 }, [foods]);
   // Fetch random foods
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/random_food/")
+    fetch("https://softworktech.com/asad_ecom/api/random_food/")
       .then((res) => res.json())
       .then((data) => setFoods(data))
       .catch((err) => console.error("Failed to fetch food items", err));
@@ -102,7 +104,7 @@ useEffect(() => {
     const token = localStorage.getItem("userToken");
     if (!token) return;
 
-    fetch("http://127.0.0.1:8000/api/wishlist/", {
+    fetch("https://softworktech.com/asad_ecom/api/wishlist/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -136,8 +138,8 @@ useEffect(() => {
 
     const isInWishlist = wishlist.includes(foodId);
     const url = isInWishlist
-      ? "http://127.0.0.1:8000/api/wishlist/remove/"
-      : "http://127.0.0.1:8000/api/wishlist/add/";
+      ? "https://softworktech.com/asad_ecom/api/wishlist/remove/"
+      : "https://softworktech.com/asad_ecom/api/wishlist/add/";
     const method = isInWishlist ? "DELETE" : "POST";
 
     fetch(url, {
@@ -214,11 +216,19 @@ useEffect(() => {
                 <div className="card shadow-sm h-100">
                   <div className="position-relative">
                     <img
-                      src={food.image || "/images/default-food.png"}
-                      className="card-img-top"
-                      alt={food.item_name}
-                      style={{ height: "200px", objectFit: "cover" }}
-                    />
+                src={
+                  food.image
+                    ? `${BASE_URL}${food.image}`
+                    : "/images/default-food.png"
+                }
+                className="card-img-top"
+                alt={food.name}
+                style={{
+                  width: "100%",
+                  height: "230px",
+                  objectFit: "cover",
+                }}
+              />
                      {/* Offer badge */}
                       {food.offer_active && food.offer_percent > 0 && (
                         <span

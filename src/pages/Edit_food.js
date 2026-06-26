@@ -27,7 +27,7 @@ const Edit_food = () => {
 
   // Load categories
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/list-category/")
+    fetch("https://softworktech.com/asad_ecom/api/list-category/")
       .then((res) => res.json())
       .then((data) => setCategories(Array.isArray(data) ? data : []))
       .catch(() => toast.error("Failed to load categories"));
@@ -35,7 +35,7 @@ const Edit_food = () => {
 
   // Load food detail
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/foods/${id}/`)
+    fetch(`https://softworktech.com/asad_ecom/api/foods/${id}/`)
       .then((res) => res.json())
       .then((data) => {
         setFormData({
@@ -88,7 +88,7 @@ const Edit_food = () => {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/foods/${id}/`, {
+      const res = await fetch(`https://softworktech.com/asad_ecom/api/foods/${id}/`, {
         method: "PUT",
         body: data,
       });

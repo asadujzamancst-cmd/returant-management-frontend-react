@@ -22,7 +22,7 @@ const ViewFoodOrder = () => {
     const fetchOrder = async () => {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/admin-order-detail/${order_number}/`,
+          `https://softworktech.com/asad_ecom/api/admin-order-detail/${order_number}/`,
           {
             headers: {
               'Content-Type': 'application/json',
@@ -189,7 +189,7 @@ const ViewFoodOrder = () => {
     console.log('Remark:', remark);
 
     // Call API to update status
-    fetch(`http://127.0.0.1:8000/api/admin-update-order-status/`, {
+    fetch(`https://softworktech.com/asad_ecom/api/admin-update-order-status/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

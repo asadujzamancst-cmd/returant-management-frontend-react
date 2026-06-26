@@ -54,7 +54,7 @@ const AdminChat = () => {
     try {
 
       const res = await fetch(
-        "http://127.0.0.1:8000/api/admin-inbox/",
+        "https://softworktech.com/asad_ecom/api/admin-inbox/",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -125,7 +125,7 @@ const AdminChat = () => {
 
       const res = await fetch(
 
-        `http://127.0.0.1:8000/api/get-chat/${uid}/${adminId}/`,
+        `https://softworktech.com/asad_ecom/api/get-chat/${uid}/${adminId}/`,
 
         {
           headers: {
@@ -147,7 +147,7 @@ const AdminChat = () => {
 
       await fetch(
 
-        `http://127.0.0.1:8000/api/seen-message/${uid}/`,
+        `https://softworktech.com/asad_ecom/api/seen-message/${uid}/`,
 
         {
           method: "POST",
@@ -215,7 +215,7 @@ const AdminChat = () => {
 
       const res = await fetch(
 
-        "http://127.0.0.1:8000/api/send-message/",
+        "https://softworktech.com/asad_ecom/api/send-message/",
 
         {
           method: "POST",
@@ -260,7 +260,7 @@ const AdminChat = () => {
 
     await fetch(
 
-      `http://127.0.0.1:8000/api/delete-message/${id}/`,
+      `https://softworktech.com/asad_ecom/api/delete-message/${id}/`,
 
       {
         method: "DELETE",
@@ -286,7 +286,7 @@ const AdminChat = () => {
 
     await fetch(
 
-      `http://127.0.0.1:8000/api/edit-message/${id}/`,
+      `https://softworktech.com/asad_ecom/api/edit-message/${id}/`,
 
       {
         method: "PUT",

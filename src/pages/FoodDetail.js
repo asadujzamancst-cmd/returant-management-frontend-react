@@ -25,7 +25,7 @@ const FoodDetail = () => {
   useEffect(() => {
     const fetchFood = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/foods/${id}/`);
+        const res = await fetch(`https://softworktech.com/asad_ecom/api/foods/${id}/`);
         if (!res.ok) throw new Error("Failed to fetch food");
         const data = await res.json();
         setFood(data);
@@ -41,7 +41,7 @@ const FoodDetail = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/reviews/${id}/`);
+        const res = await fetch(`https://softworktech.com/asad_ecom/api/reviews/${id}/`);
         if (!res.ok) throw new Error("Failed to fetch reviews");
         const data = await res.json();
         setReviews(data);
@@ -55,7 +55,7 @@ const FoodDetail = () => {
 
   const fetchreviews = async () => {
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/reviews/${food.id}/`);
+      const res = await fetch(`https://softworktech.com/asad_ecom/api/reviews/${food.id}/`);
       const data = await res.json();
       setReviews(data);
     } catch (err) {
@@ -72,8 +72,8 @@ const FoodDetail = () => {
 
     const payload = { rating, comment };
     const url = editId
-      ? `http://127.0.0.1:8000/api/reviews/review_edit/${editId}/`
-      : `http://127.0.0.1:8000/api/reviews/add/${food.id}/`;
+      ? `https://softworktech.com/asad_ecom/api/reviews/review_edit/${editId}/`
+      : `https://softworktech.com/asad_ecom/api/reviews/add/${food.id}/`;
     const method = editId ? "PUT" : "POST";
 
     const res = await fetch(url, {
@@ -98,7 +98,7 @@ const FoodDetail = () => {
 
   const handleDeleteReview = async (id) => {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
-    const res = await fetch(`http://127.0.0.1:8000/api/reviews/review_edit/${id}/`, {
+    const res = await fetch(`https://softworktech.com/asad_ecom/api/reviews/review_edit/${id}/`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -128,7 +128,7 @@ const FoodDetail = () => {
   // Wishlist
   const fetchWishlist = () => {
     if (!token) return;
-    fetch("http://127.0.0.1:8000/api/wishlist/", {
+    fetch("https://softworktech.com/asad_ecom/api/wishlist/", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -150,8 +150,8 @@ const FoodDetail = () => {
     }
     const isInWishlist = wishlist.includes(foodId);
     const url = isInWishlist
-      ? "http://127.0.0.1:8000/api/wishlist/remove/"
-      : "http://127.0.0.1:8000/api/wishlist/add/";
+      ? "https://softworktech.com/asad_ecom/api/wishlist/remove/"
+      : "https://softworktech.com/asad_ecom/api/wishlist/add/";
     const method = isInWishlist ? "DELETE" : "POST";
 
     fetch(url, {
@@ -179,7 +179,7 @@ const FoodDetail = () => {
     }
     if (!food?.id) return toast.error("Food data not loaded yet");
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/cart/add/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/cart/add/", {
         method: "POST",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ food: food.id }),

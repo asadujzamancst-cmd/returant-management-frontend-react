@@ -15,7 +15,7 @@ export const WishlistProvider = ({ children }) => {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/wishlist/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/wishlist/", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

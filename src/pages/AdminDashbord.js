@@ -53,7 +53,7 @@ const AdminDashboard = () => {
       return;
     }
 
-    fetch("http://127.0.0.1:8000/api/dashbord/", {
+    fetch("https://softworktech.com/asad_ecom/api/dashbord/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

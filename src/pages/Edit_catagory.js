@@ -24,7 +24,7 @@ const Edit_catagory = () => {
   // ✅ old data load
   useEffect(() => {
     setLoading(true);
-    fetch(`http://127.0.0.1:8000/api/catagory_detail/${id}/`)
+    fetch(`https://softworktech.com/asad_ecom/api/catagory_detail/${id}/`)
       .then((res) => res.json())
       .then((data) => {
         setCategoryName(data.name);   // 👈 important
@@ -42,7 +42,7 @@ const handleSubmit = (e) => {
   e.preventDefault();
   setLoading(true);
 
-  fetch(`http://127.0.0.1:8000/api/catagory_detail/${id}/`, {
+  fetch(`https://softworktech.com/asad_ecom/api/catagory_detail/${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

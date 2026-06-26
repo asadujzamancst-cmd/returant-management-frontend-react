@@ -16,7 +16,7 @@ const Wishlist = () => {
     if (!token) return;
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/wishlist/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/wishlist/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -25,7 +25,7 @@ const Wishlist = () => {
 
       // Fetch each food detail
       const foodPromises = foodIds.map((id) =>
-        fetch(`http://127.0.0.1:8000/api/foods/${id}/`).then((res) => res.json())
+        fetch(`https://softworktech.com/asad_ecom/api/foods/${id}/`).then((res) => res.json())
       );
       const foodsData = await Promise.all(foodPromises);
       setFoods(foodsData);
@@ -51,7 +51,7 @@ const Wishlist = () => {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/wishlist/remove/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/wishlist/remove/", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -33,7 +33,7 @@ const RiderOrder = () => {
     setLoading(true);
 
     axios
-      .get("http://127.0.0.1:8000/api/rider/ready-orders/", {
+      .get("https://softworktech.com/asad_ecom/api/rider/ready-orders/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setOrders(res.data))
@@ -46,7 +46,7 @@ const RiderOrder = () => {
       const token = localStorage.getItem("riderToken"); // ✅ FIX
 
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/rider/auto-assign-order/",
+        "https://softworktech.com/asad_ecom/api/rider/auto-assign-order/",
         { rider_id: riderId }, // ✅ correct use
         {
           headers: { Authorization: `Bearer ${token}` },

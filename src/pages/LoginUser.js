@@ -29,7 +29,7 @@ const LoginUser = () => {
     }
 
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/login_user/', {
+      const res = await fetch('https://softworktech.com/asad_ecom/api/login_user/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

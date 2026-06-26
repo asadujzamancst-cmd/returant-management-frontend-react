@@ -45,7 +45,7 @@ const OrderDetails = () => {
       try {
         // Items
         const resItems = await fetch(
-          `http://127.0.0.1:8000/api/order/by_order_number/${order_number}/`,
+          `https://softworktech.com/asad_ecom/api/order/by_order_number/${order_number}/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -63,7 +63,7 @@ const OrderDetails = () => {
 
         // Address
         const resAddr = await fetch(
-          `http://127.0.0.1:8000/api/order_address/${order_number}/`,
+          `https://softworktech.com/asad_ecom/api/order_address/${order_number}/`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -101,7 +101,7 @@ const OrderDetails = () => {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/api/invoice/${order_number}/`,
+        `https://softworktech.com/asad_ecom/api/invoice/${order_number}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

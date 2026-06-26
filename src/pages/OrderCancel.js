@@ -16,7 +16,7 @@ const OrderCancel = () => {
       return;
     }
 
-    fetch('http://127.0.0.1:8000/api/orders-canceled/', {
+    fetch('https://softworktech.com/asad_ecom/api/orders-canceled/', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,

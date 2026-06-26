@@ -33,7 +33,7 @@ function MyOrders() {
 
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/ordersUser/${userId}/`,
+          `https://softworktech.com/asad_ecom/api/ordersUser/${userId}/`,
           {
             headers: {
               "Content-Type": "application/json",

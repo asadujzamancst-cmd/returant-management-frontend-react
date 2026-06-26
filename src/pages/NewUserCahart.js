@@ -38,7 +38,7 @@ const NewUserChart = () => {
 
     setLoading(true);
 
-    fetch("http://127.0.0.1:8000/api/weekly_user_registrations/", {
+    fetch("https://softworktech.com/asad_ecom/api/weekly_user_registrations/", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {

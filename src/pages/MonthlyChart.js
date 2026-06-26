@@ -40,7 +40,7 @@ const MonthlyChart = () => {
 
     setLoading(true);
 
-    fetch("http://127.0.0.1:8000/api/monthly_sales/", {
+    fetch("https://softworktech.com/asad_ecom/api/monthly_sales/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

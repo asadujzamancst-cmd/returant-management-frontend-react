@@ -40,7 +40,7 @@ const WeklyChart = () => {
 
     setLoading(true);
 
-    fetch("http://127.0.0.1:8000/api/weekly_sales/", {
+    fetch("https://softworktech.com/asad_ecom/api/weekly_sales/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },

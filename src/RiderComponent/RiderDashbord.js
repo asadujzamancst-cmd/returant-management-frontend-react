@@ -25,7 +25,7 @@ const RiderDashbord = () => {
         const riderId = localStorage.getItem("rider_id");
 
           const res = await axios.get(
-            `http://127.0.0.1:8000/api/rider/profile/?rider_id=${riderId}`
+            `https://softworktech.com/asad_ecom/api/rider/profile/?rider_id=${riderId}`
           );
                   setRider(res.data);
         setApproved(res.data.is_approved);

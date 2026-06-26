@@ -31,7 +31,7 @@ const FoodOrderSeearch = () => {
       }
 
       const res = await fetch(
-        `http://127.0.0.1:8000/api/search-order/?q=${searchterm}`,
+        `https://softworktech.com/asad_ecom/api/search-order/?q=${searchterm}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

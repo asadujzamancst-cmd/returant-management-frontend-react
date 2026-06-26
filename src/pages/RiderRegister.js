@@ -36,7 +36,7 @@ const RiderRegister = () => {
     try {
 
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/rider/register/",
+        "https://softworktech.com/asad_ecom/api/rider/register/",
         data
       );
 

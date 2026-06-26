@@ -11,7 +11,7 @@ const ManageFood = () => {
 
   // 🔹 Load food items
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/food-list/')
+    fetch('https://softworktech.com/asad_ecom/api/food-list/')
       .then(res => res.json())
       .then(data => {
         setFoodItems(data)
@@ -50,7 +50,7 @@ const ManageFood = () => {
   
   const handleDelete = (id) => {
     if (window.confirm("are you sure")) {
-      fetch(`http://127.0.0.1:8000/api/food_delete/${id}/`, {
+      fetch(`https://softworktech.com/asad_ecom/api/food_delete/${id}/`, {
         method: "DELETE",
       })
         .then((res) => res.text())

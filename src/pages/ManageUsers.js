@@ -34,7 +34,7 @@ const ManageUsers = () => {
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
 
-    fetch("http://127.0.0.1:8000/api/list_user/", {
+    fetch("https://softworktech.com/asad_ecom/api/list_user/", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -80,7 +80,7 @@ const handleDelete = async (id) => {
   if (!window.confirm("Are you sure you want to delete?")) return;
 
   try {
-    const res = await fetch(`http://127.0.0.1:8000/api/delete-user/${id}/`, {
+    const res = await fetch(`https://softworktech.com/asad_ecom/api/delete-user/${id}/`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

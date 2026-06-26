@@ -38,7 +38,7 @@ const RiderOrder = () => {
   const fetchOrders = (token) => {
 
     axios
-      .get("http://127.0.0.1:8000/api/rider/my-orders/", {
+      .get("https://softworktech.com/asad_ecom/api/rider/my-orders/", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => {
@@ -80,7 +80,7 @@ const RiderOrder = () => {
     try {
 
       const res = await axios.post(
-        `http://127.0.0.1:8000/api/rider/complete-delivery/${orderId}/`,
+        `https://softworktech.com/asad_ecom/api/rider/complete-delivery/${orderId}/`,
         { rider_id: riderId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -31,7 +31,7 @@ const Profile = () => {
 
     const fetchProfile = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/user/profile/`, {
+        const res = await fetch(`https://softworktech.com/asad_ecom/api/user/profile/`, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -66,7 +66,7 @@ const Profile = () => {
     if (!token) return;
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/user/profile/update/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/user/profile/update/", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -24,7 +24,7 @@ const AdminRiderOrders = () => {
     setLoading(true);
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/admin/rider-orders/",
+        "https://softworktech.com/asad_ecom/api/admin/rider-orders/",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       // newest first

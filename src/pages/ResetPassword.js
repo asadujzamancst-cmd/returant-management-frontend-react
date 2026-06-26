@@ -23,7 +23,7 @@ function ResetPassword() {
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/reset-password/${uid}/${token}/`,
+        `https://softworktech.com/asad_ecom/api/reset-password/${uid}/${token}/`,
         {
           method: 'POST',
           headers: {

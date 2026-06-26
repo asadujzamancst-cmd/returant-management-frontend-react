@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
       return;
     }
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/cart/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/cart/", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error("Failed to fetch cart");

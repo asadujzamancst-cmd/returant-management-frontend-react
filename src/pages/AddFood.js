@@ -20,7 +20,7 @@ const AddFood = () => {
   // Load categories
   useEffect(() => {
     const token = localStorage.getItem('adminToken');
-    fetch('http://127.0.0.1:8000/api/list-category/', {
+    fetch('https://softworktech.com/asad_ecom/api/list-category/', {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -61,7 +61,7 @@ const AddFood = () => {
 
     try {
       const token = localStorage.getItem('adminToken');
-      const res = await fetch('http://127.0.0.1:8000/api/add-fooditems/', {
+      const res = await fetch('https://softworktech.com/asad_ecom/api/add-fooditems/', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

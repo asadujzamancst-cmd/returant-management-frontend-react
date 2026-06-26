@@ -27,7 +27,7 @@ const Chat = () => {
     try {
 
       const res = await fetch(
-        `http://127.0.0.1:8000/api/get-chat/${userId}/${adminId}/`,
+        `https://softworktech.com/asad_ecom/api/get-chat/${userId}/${adminId}/`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -118,7 +118,7 @@ const Chat = () => {
       setSending(true);
 
       const res = await fetch(
-        "http://127.0.0.1:8000/api/send-message/",
+        "https://softworktech.com/asad_ecom/api/send-message/",
         {
           method: "POST",
           headers: {
@@ -166,7 +166,7 @@ const Chat = () => {
     try {
 
       await fetch(
-        `http://127.0.0.1:8000/api/delete-message/${id}/`,
+        `https://softworktech.com/asad_ecom/api/delete-message/${id}/`,
         {
           method: "DELETE",
           headers: {
@@ -197,7 +197,7 @@ const Chat = () => {
     try {
 
       await fetch(
-        `http://127.0.0.1:8000/api/edit-message/${id}/`,
+        `https://softworktech.com/asad_ecom/api/edit-message/${id}/`,
         {
           method: "PUT",
           headers: {

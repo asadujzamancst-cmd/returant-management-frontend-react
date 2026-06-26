@@ -26,7 +26,7 @@ const OrderReport = () => {
       return;
     }
 
-    fetch('http://127.0.0.1:8000/api/all-order/', {
+    fetch('https://softworktech.com/asad_ecom/api/all-order/', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -69,7 +69,7 @@ const OrderReport = () => {
       const token = localStorage.getItem('adminToken');
       
 
-      const response = await fetch('http://127.0.0.1:8000/api/order-between-date/', {
+      const response = await fetch('https://softworktech.com/asad_ecom/api/order-between-date/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

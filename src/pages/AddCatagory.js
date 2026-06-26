@@ -26,7 +26,7 @@ const AddCategoryPage = () => {
     try {
       
 
-      const response = await fetch('http://127.0.0.1:8000/api/add-category/', {
+      const response = await fetch('https://softworktech.com/asad_ecom/api/add-category/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

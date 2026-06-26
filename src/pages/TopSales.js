@@ -14,7 +14,7 @@ const TopSales = () => {
       return;
     }
 
-    fetch("http://127.0.0.1:8000/api/top_selling_foods/", {
+    fetch("https://softworktech.com/asad_ecom/api/top_selling_foods/", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {

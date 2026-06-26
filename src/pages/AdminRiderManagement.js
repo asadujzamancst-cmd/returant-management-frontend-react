@@ -21,7 +21,7 @@ const AdminRiderManagement = () => {
 
     try {
       const res = await axios.get(
-        "http://127.0.0.1:8000/api/admin/riders/",
+        "https://softworktech.com/asad_ecom/api/admin/riders/",
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setRiders(res.data);
@@ -41,7 +41,7 @@ const AdminRiderManagement = () => {
     const token = localStorage.getItem("adminToken");
     try {
       await axios.post(
-        `http://127.0.0.1:8000/api/admin/rider-approve/${riderId}/`,
+        `https://softworktech.com/asad_ecom/api/admin/rider-approve/${riderId}/`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -57,7 +57,7 @@ const AdminRiderManagement = () => {
     const token = localStorage.getItem("adminToken");
     try {
       await axios.delete(
-        `http://127.0.0.1:8000/api/admin/rider-delete/${riderId}/`,
+        `https://softworktech.com/asad_ecom/api/admin/rider-delete/${riderId}/`,
         { headers: { Authorization: `Bearer ${token}` } }
       );
       toast.success("Rider deleted");

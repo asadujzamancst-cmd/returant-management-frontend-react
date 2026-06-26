@@ -12,7 +12,7 @@ const ManageCategory = () => {
 
   // Fetch categories from backend
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/list-category/')
+    fetch('https://softworktech.com/asad_ecom/api/list-category/')
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch categories');
         return res.json();
@@ -51,7 +51,7 @@ const ManageCategory = () => {
 
 const handleDelete = (id) => {
   if (window.confirm("are you sure")) {
-    fetch(`http://127.0.0.1:8000/api/catagory_detail/${id}/`, {
+    fetch(`https://softworktech.com/asad_ecom/api/catagory_detail/${id}/`, {
       method: "DELETE",
     })
       .then((res) => res.text())

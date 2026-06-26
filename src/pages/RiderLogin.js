@@ -27,7 +27,7 @@ const RiderLogin = () => {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/api/rider/login/",
+        "https://softworktech.com/asad_ecom/api/rider/login/",
         formData
       );
 

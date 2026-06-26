@@ -33,7 +33,7 @@ const CartD = () => {
 
     setLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/cart/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/cart/", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -73,7 +73,7 @@ const CartD = () => {
     setGrandTotal(calculateGrandTotal(updatedItems));
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/cart/update_quantity/", {
+      const res = await fetch("https://softworktech.com/asad_ecom/api/cart/update_quantity/", {
         method: "PUT",
         headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify({ orderId, quantity: newQuantity }),
@@ -101,7 +101,7 @@ const CartD = () => {
     setGrandTotal(calculateGrandTotal(updatedItems));
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/cart/remove/${orderId}/`, {
+      const res = await fetch(`https://softworktech.com/asad_ecom/api/cart/remove/${orderId}/`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

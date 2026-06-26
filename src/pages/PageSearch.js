@@ -17,7 +17,7 @@ const PageSearch = () => {
 
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/food_search/?q=${query}`)
+    fetch(`https://softworktech.com/asad_ecom/api/food_search/?q=${query}`)
       .then((res) => res.json())
       .then((data) => setFoods(data))
       .catch((err) => console.error("Failed to fetch food items", err));
@@ -28,7 +28,7 @@ const PageSearch = () => {
       const token = localStorage.getItem("userToken");
       if (!token) return;
   
-      fetch("http://127.0.0.1:8000/api/wishlist/", {
+      fetch("https://softworktech.com/asad_ecom/api/wishlist/", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -62,8 +62,8 @@ const PageSearch = () => {
   
       const isInWishlist = wishlist.includes(foodId);
       const url = isInWishlist
-        ? "http://127.0.0.1:8000/api/wishlist/remove/"
-        : "http://127.0.0.1:8000/api/wishlist/add/";
+        ? "https://softworktech.com/asad_ecom/api/wishlist/remove/"
+        : "https://softworktech.com/asad_ecom/api/wishlist/add/";
       const method = isInWishlist ? "DELETE" : "POST";
   
       fetch(url, {
@@ -104,7 +104,7 @@ useEffect(() => {
     for (const food of foods) {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/food_rating/${food.id}/`
+          `https://softworktech.com/asad_ecom/api/food_rating/${food.id}/`
         );
 
         const data = await res.json();

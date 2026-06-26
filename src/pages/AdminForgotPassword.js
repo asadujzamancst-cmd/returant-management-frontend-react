@@ -19,7 +19,7 @@ function AdminForgotPassword() {
 
     try {
       const res = await fetch(
-        'http://127.0.0.1:8000/api/admin/forgot-password/',
+        'https://softworktech.com/asad_ecom/api/admin/forgot-password/',
         {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

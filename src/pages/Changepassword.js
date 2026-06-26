@@ -39,7 +39,7 @@ const Changepassword = () => {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/api/user/change-password/${userId}/`,
+        `https://softworktech.com/asad_ecom/api/user/change-password/${userId}/`,
         {
           method: "PUT",
           headers: {

@@ -16,7 +16,7 @@ const OrderReady = () => {
       return;
     }
 
-    fetch('http://127.0.0.1:8000/api/orders-being-ready/', {
+    fetch('https://softworktech.com/asad_ecom/api/orders-being-ready/', {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,

@@ -18,7 +18,7 @@ const CancelOrderModal = ({ order_number, paymentMode, onClose, onCancelled }) =
 
     try {
       const response = await fetch(
-        `http://127.0.0.1:8000/api/cancel_order/${order_number}/`,
+        `https://softworktech.com/asad_ecom/api/cancel_order/${order_number}/`,
         {
           method: "POST",
           headers: {
