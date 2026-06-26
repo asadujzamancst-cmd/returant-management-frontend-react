@@ -132,7 +132,7 @@ const ManageFood = () => {
                 alt={item.name}
                 style={{
                   width: "100%",
-                  height: "230px",
+                  height: "30px",
                   objectFit: "cover",
                 }}
               />
