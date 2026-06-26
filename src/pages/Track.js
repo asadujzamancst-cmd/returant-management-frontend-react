@@ -33,7 +33,7 @@ const Track = () => {
   const fetchTrackingInfo = async (orderNumber) => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/track/${orderNumber}`
+        `https://softworktech.com/asad_ecom/api/track/${orderNumber}`
       );
 
       if (response.ok) {

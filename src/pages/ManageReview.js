@@ -35,7 +35,7 @@ const perPage = 5;
 // ✅ Fetch Reviews
 useEffect(()=>{
 
-fetch("http://localhost:8000/api/all-reviews/")
+fetch("https://softworktech.com/asad_ecom/api/all-reviews/")
 .then(res=>res.json())
 .then(data=>{
 
@@ -61,7 +61,7 @@ const handleDelete=(id)=>{
 
 if(window.confirm("Delete review ?")){
 
-fetch(`http://localhost:8000/api/delete_review/${id}/`,{
+fetch(`https://softworktech.com/asad_ecom/api/delete_review/${id}/`,{
 method:"DELETE"
 })
 .then(res=>{
