@@ -124,12 +124,12 @@ const ManageFood = () => {
                   {item.image ? (
                  <img
                 src={
-                  food.image
-                    ? `${BASE_URL}${food.image}`
-                    : "/images/default-food.png"
+                  item.image
+                    ? `${BASE_URL}${item.image}`
+                    : "/images/default-item.png"
                 }
                 className="card-img-top"
-                alt={food.name}
+                alt={item.name}
                 style={{
                   width: "100%",
                   height: "230px",
