@@ -101,6 +101,8 @@ const RiderRegister = () => {
           display: flex;
           min-height: 100vh;
           width: 100%;
+          background: radial-gradient(circle at top, #0f172a, #020617);
+
         }
 
         /* LEFT SIDE */
@@ -117,6 +119,11 @@ const RiderRegister = () => {
         /* RIGHT IMAGE SIDE */
         .right-section {
           flex: 1;
+          width: 300px;
+          height: 460px;
+          border-radius: 20px;
+          margin-top:70px;
+          margin-left:80px;
           background: url("/images/rider.png") center/cover no-repeat;
         }
 

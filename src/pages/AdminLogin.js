@@ -202,6 +202,11 @@ const AdminLogin = () => {
         /* RIGHT IMAGE */
         .admin-right {
           flex: 1;
+           width: 300px;
+          height: 460px;
+          border-radius: 20px;
+          margin-top:70px;
+          margin-right:80px;         
           background: url("/images/admin.png") center/cover no-repeat;
         }
 

@@ -129,6 +129,11 @@ const RiderLogin = () => {
 
         .right {
           flex: 1;
+          width: 300px;
+          height: 460px;
+          border-radius: 20px;
+          margin-top:70px;
+          margin-right:80px;
           background: url("/images/rider.png") center/cover no-repeat;
         }
 
