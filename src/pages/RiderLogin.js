@@ -31,28 +31,22 @@ const RiderLogin = () => {
         formData
       );
 
-      // Check if rider is approved
       if (!res.data.is_approved) {
         toast.info("Your account is pending admin approval");
         setLoading(false);
         return;
       }
 
-      // ✅ Save tokens
-localStorage.setItem("riderToken", res.data.access);
-localStorage.setItem("riderRefresh", res.data.refresh);
-localStorage.setItem("role", "rider");
-localStorage.setItem("rider_id", res.data.rider_id);
+      localStorage.setItem("riderToken", res.data.access);
+      localStorage.setItem("riderRefresh", res.data.refresh);
+      localStorage.setItem("role", "rider");
+      localStorage.setItem("rider_id", res.data.rider_id);
 
       toast.success("Login Successful", { autoClose: 2000 });
 
-      // Redirect after 2s
-      setTimeout(() => navigate("/rider/dashboard"), 2000);
+      setTimeout(() => navigate("/rider/dashboard"), 1200);
     } catch (error) {
-      console.error("Rider login error:", error);
-      toast.error(error.response?.data?.error || "Login failed", {
-        autoClose: 3000,
-      });
+      toast.error(error.response?.data?.error || "Login failed");
     } finally {
       setLoading(false);
     }
@@ -60,85 +54,181 @@ localStorage.setItem("rider_id", res.data.rider_id);
 
   return (
     <PublicLayout>
-             <div
-        className="d-flex justify-content-center align-items-center vh-100"
-        style={{
-          backgroundImage: 'url("/images/bg2.png")',
-          backgroundSize: 'cover',
-        }}
-      >
-      <div className="d-flex justify-content-center align-items-center vh-100 ">
-        <div
-          className="card shadow-lg p-4 rounded-4"
-          style={{ maxWidth: "400px", width: "100%" }}
-        >
-          <div className="card-body">
-            <h3 className="card-title text-center mb-3">Rider Login</h3>
-            <p className="text-center text-muted mb-4">
-              Login to manage your deliveries
-            </p>
+
+      <div className="login-wrapper">
+
+        {/* LEFT SIDE (FORM) */}
+        <div className="left">
+
+          <div className="glass-card">
+
+            <h3>Rider Login</h3>
+            <p>Login to manage your deliveries</p>
 
             <form onSubmit={handleSubmit}>
-              <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="Enter your email"
-                  required
-                  disabled={loading}
-                />
-              </div>
 
-              <div className="mb-3">
-                <label htmlFor="password" className="form-label">
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  className="form-control"
-                  placeholder="Enter your password"
-                  required
-                  disabled={loading}
-                />
-              </div>
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+                disabled={loading}
+              />
 
-              <div className="d-flex justify-content-between mt-3">
-                <button
-                  type="submit"
-                  className="btn btn-primary me-2"
-                  disabled={loading}
-                >
-                  {loading ? "Logging in..." : "Login"}
-                </button>
-                <Link className="btn btn-outline-danger me-2" to="/rider/register">
-                  Register
-                </Link>
-                <Link className="btn btn-outline-primary" to="/admin-login">
-                  Admin
-                </Link>
-              </div>
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                disabled={loading}
+              />
+
+              <button disabled={loading}>
+                {loading ? "Logging in..." : "Login"}
+              </button>
+
             </form>
-          </div>
-          <div className="text-center mt-3">
-  <Link to="/rider-forgot-password" className="text-primary">
-    Forgot Password?
-  </Link>
-</div>
-        </div>
-        
 
-        <ToastContainer position="top-right" autoClose={3000} />
+            <div className="links">
+              <Link to="/rider/register">Register</Link>
+              <Link to="/admin-login">Admin</Link>
+            </div>
+
+            <div className="forgot">
+              <Link to="/rider-forgot-password">Forgot Password?</Link>
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* RIGHT SIDE IMAGE */}
+        <div className="right"></div>
+
       </div>
-      </div>
+
+      <ToastContainer position="top-right" autoClose={3000} />
+
+      {/* STYLE */}
+      <style>{`
+        .login-wrapper {
+          display: flex;
+          min-height: 100vh;
+          background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+
+        .left {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .right {
+          flex: 1;
+          background: url("/images/rider.png") center/cover no-repeat;
+        }
+
+        /* GLASS CARD */
+        .glass-card {
+          width: 380px;
+          padding: 30px;
+          border-radius: 16px;
+
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(20px);
+
+          border: 1px solid rgba(255,255,255,0.15);
+          box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+
+          color: white;
+        }
+
+        .glass-card h3 {
+          text-align: center;
+          margin-bottom: 5px;
+        }
+
+        .glass-card p {
+          text-align: center;
+          font-size: 13px;
+          opacity: 0.7;
+          margin-bottom: 15px;
+        }
+
+        .glass-card input {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 12px;
+
+          border-radius: 10px;
+          border: 1px solid rgba(255,255,255,0.2);
+
+          background: rgba(255,255,255,0.06);
+          color: white;
+          outline: none;
+        }
+
+        .glass-card input::placeholder {
+          color: rgba(255,255,255,0.6);
+        }
+
+        .glass-card button {
+          width: 100%;
+          padding: 12px;
+          border-radius: 10px;
+          border: none;
+
+          background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+          color: white;
+          font-weight: 600;
+
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .glass-card button:hover {
+          transform: translateY(-2px);
+        }
+
+        .links {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 12px;
+          font-size: 13px;
+        }
+
+        .links a {
+          color: #93c5fd;
+          text-decoration: none;
+        }
+
+        .forgot {
+          text-align: center;
+          margin-top: 10px;
+          font-size: 12px;
+        }
+
+        .forgot a {
+          color: #c4b5fd;
+          text-decoration: none;
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+          .right {
+            display: none;
+          }
+
+          .glass-card {
+            width: 95%;
+          }
+        }
+      `}</style>
+
     </PublicLayout>
   );
 };

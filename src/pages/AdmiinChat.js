@@ -207,6 +207,9 @@ const AdminChat = () => {
     if (text) formData.append("message", text);
 
     if (imageFile) formData.append("image", imageFile);
+    for (const pair of formData.entries()) {
+    console.log(pair[0], pair[1]);
+}
 
 
     try {

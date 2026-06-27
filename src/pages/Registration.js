@@ -1,4 +1,3 @@
-// src/pages/Registration.jsx
 import React, { useState } from 'react';
 import PublicLayout from '../components/PublicLayout';
 import { ToastContainer, toast } from 'react-toastify';
@@ -7,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Registration = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -15,39 +15,25 @@ const Registration = () => {
     password: '',
   });
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch('https://softworktech.com/asad_ecom/api/register/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
 
-      // 🔹 সার্ভার থেকে HTML এরর (৫০০) আসলে সেটি হ্যান্ডেল করা
-      const contentType = res.headers.get("content-type");
-      let data;
-      if (contentType && contentType.indexOf("application/json") !== -1) {
-        data = await res.json();
-      } else {
-        throw new Error("Server returned non-JSON response. Check your Backend.");
-      }
+      const data = await res.json();
 
       if (res.ok) {
-        toast.success(data.message || 'Registration successful!', {
-          position: "top-right",
-          autoClose: 2000,
-        });
+        toast.success(data.message || 'Registration successful!');
 
-        // ফর্ম ক্লিয়ার করা
         setFormData({
           first_name: '',
           last_name: '',
@@ -56,122 +42,220 @@ const Registration = () => {
           password: '',
         });
 
-        // ২ সেকেন্ড পর লগইন পেজে পাঠানো
-        setTimeout(() => navigate('/login-user'), 2000);
-
+        setTimeout(() => navigate('/login-user'), 1500);
       } else {
-        // ডুপ্লিকেট ইমেইল বা মোবাইলের জন্য এরর মেসেজ
-        toast.error(data.message || 'Registration failed!', {
-          position: "top-right",
-          autoClose: 3000,
-        });
+        toast.error(data.message || 'Registration failed!');
       }
     } catch (err) {
-      console.error("Registration Error:", err);
-      toast.error(err.message || 'An error occurred. Try again.', {
-        position: "top-right",
-        autoClose: 3000,
-      });
+      toast.error('Server error. Try again.');
     }
   };
 
   return (
     <PublicLayout>
-             <div
-        className="d-flex justify-content-center align-items-center vh-100"
-        style={{
-          backgroundImage: 'url("/images/backgrounu.png")',
-          backgroundSize: 'cover',
-        }}
-      >
-      <div className="container py-5">
-        <h2 className="mb-4 text-center text-white">User Registration</h2>
 
-        <form
-          onSubmit={handleSubmit}
-          className="mx-auto shadow p-4 rounded bg-white"
-          style={{ maxWidth: '500px' }}
-        >
-          <div className="row">
-            <div className="col-md-6 mb-3">
-              <label className="form-label">First Name</label>
+      <div className="reg-wrapper">
+
+        {/* LEFT FORM */}
+        <div className="left">
+
+          <div className="glass-card">
+
+            <h2>User Registration</h2>
+            <p>Create your account</p>
+
+            <form onSubmit={handleSubmit}>
+
+              <div className="grid">
+                <input
+                  type="text"
+                  name="first_name"
+                  placeholder="First Name"
+                  value={formData.first_name}
+                  onChange={handleChange}
+                  required
+                />
+
+                <input
+                  type="text"
+                  name="last_name"
+                  placeholder="Last Name"
+                  value={formData.last_name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
               <input
-                type="text"
-                name="first_name"
-                className="form-control"
-                value={formData.first_name}
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
                 onChange={handleChange}
                 required
               />
-            </div>
-            <div className="col-md-6 mb-3">
-              <label className="form-label">Last Name</label>
+
               <input
                 type="text"
-                name="last_name"
-                className="form-control"
-                value={formData.last_name}
+                name="mobile"
+                placeholder="Mobile"
+                value={formData.mobile}
                 onChange={handleChange}
                 required
               />
-            </div>
+
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+
+              <button type="submit">Register</button>
+
+              <p className="login-link">
+                Already have account?
+                <span onClick={() => navigate('/login-user')}> Login</span>
+              </p>
+
+            </form>
+
           </div>
 
-          <div className="mb-3">
-            <label className="form-label">Email Address</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="example@mail.com"
-              required
-            />
-          </div>
+        </div>
 
-          <div className="mb-3">
-            <label className="form-label">Mobile Number</label>
-            <input
-              type="text"
-              name="mobile"
-              className="form-control"
-              value={formData.mobile}
-              onChange={handleChange}
-              placeholder="017XXXXXXXX"
-              required
-            />
-          </div>
+        {/* RIGHT IMAGE */}
+        <div className="right"></div>
 
-          <div className="mb-3">
-            <label className="form-label">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="form-control"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Min 6 characters"
-              required
-            />
-          </div>
-
-          <button type="submit" className="btn btn-primary w-100 py-2 fw-bold">
-            REGISTER NOW
-          </button>
-          
-          <p className="text-center mt-3">
-            Already have an account? <span 
-              className="text-primary cursor-pointer" 
-              style={{cursor: 'pointer'}} 
-              onClick={() => navigate('/login-user')}
-            >Login here</span>
-          </p>
-        </form>
-
-        <ToastContainer />
       </div>
-      </div>
+
+      <ToastContainer />
+
+      {/* STYLE */}
+      <style>{`
+        .reg-wrapper {
+          display: flex;
+          min-height: 100vh;
+          background: radial-gradient(circle at top, #0f172a, #020617);
+        }
+
+        .left {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+        }
+
+        .right {
+          flex: 1;
+          background: url("/images/backgrounu.png") center/cover no-repeat;
+        }
+
+        /* GLASS CARD */
+        .glass-card {
+          width: 420px;
+          padding: 30px;
+          border-radius: 18px;
+
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(22px);
+
+          border: 1px solid rgba(255,255,255,0.15);
+          box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+
+          color: white;
+        }
+
+        .glass-card h2 {
+          text-align: center;
+          margin-bottom: 5px;
+        }
+
+        .glass-card p {
+          text-align: center;
+          font-size: 13px;
+          opacity: 0.7;
+          margin-bottom: 15px;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        input {
+          width: 100%;
+          padding: 12px;
+          margin-bottom: 10px;
+
+          border-radius: 10px;
+          border: 1px solid rgba(255,255,255,0.2);
+
+          background: rgba(255,255,255,0.06);
+          color: white;
+          outline: none;
+        }
+
+        input::placeholder {
+          color: rgba(255,255,255,0.6);
+        }
+
+        input:focus {
+          border-color: #60a5fa;
+        }
+
+        button {
+          width: 100%;
+          padding: 12px;
+          border-radius: 12px;
+
+          border: none;
+          cursor: pointer;
+
+          background: linear-gradient(135deg, #3b82f6, #22c55e);
+          color: white;
+
+          font-weight: 600;
+          transition: 0.3s;
+        }
+
+        button:hover {
+          transform: translateY(-2px);
+        }
+
+        .login-link {
+          text-align: center;
+          margin-top: 10px;
+          font-size: 13px;
+          opacity: 0.8;
+        }
+
+        .login-link span {
+          color: #60a5fa;
+          cursor: pointer;
+          margin-left: 5px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+          .right {
+            display: none;
+          }
+
+          .glass-card {
+            width: 95%;
+          }
+
+          .grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+
     </PublicLayout>
   );
 };

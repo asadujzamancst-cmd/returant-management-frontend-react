@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import PublicLayout from "../components/PublicLayout";
 
 const RiderRegister = () => {
-
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -34,13 +33,12 @@ const RiderRegister = () => {
     });
 
     try {
-
       const res = await axios.post(
         "https://softworktech.com/asad_ecom/api/rider/register/",
         data
       );
 
-      toast.success(res.data.message, { autoClose: 2500 });
+      toast.success(res.data.message);
 
       setFormData({
         name: "",
@@ -50,153 +48,170 @@ const RiderRegister = () => {
         password: "",
         image: null,
       });
-
     } catch (error) {
-
-      console.error(error);
-
-      toast.error(
-        error.response?.data?.error || "Something went wrong",
-        { autoClose: 3000 }
-      );
-
+      toast.error(error.response?.data?.error || "Something went wrong");
     }
   };
 
   return (
-
     <PublicLayout>
 
-      <div
-        className="d-flex justify-content-center align-items-center vh-100"
-        style={{
-          backgroundImage: 'url("/images/bg3.png")',
-          backgroundSize: 'cover',
-        }}
-      >
+      {/* MAIN WRAPPER */}
+      <div className="register-wrapper">
 
-        <div className="card shadow-lg p-5 rounded-4" style={{ maxWidth: "750px", width: "100%" }}>
+        {/* LEFT FORM SECTION */}
+        <div className="left-section">
 
-          <div className="card-body">
+          <div className="glass-card">
 
-            <h3 className="card-title text-center mb-3">
-              Rider Registration
-            </h3>
-
-            <p className="text-center text-muted mb-4">
-              Fill in your details to create an account
-            </p>
+            <h2>Rider Registration</h2>
+            <p>Create account to start delivering</p>
 
             <form onSubmit={handleSubmit}>
 
-              <div className="row">
+              <div className="grid">
 
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">Full Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
-
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter your email"
-                    required
-                  />
-                </div>
-
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">Mobile</label>
-                  <input
-                    type="text"
-                    name="mobile"
-                    value={formData.mobile}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter your mobile number"
-                    required
-                  />
-                </div>
-
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">NID Number</label>
-                  <input
-                    type="text"
-                    name="nid_number"
-                    value={formData.nid_number}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter your NID number"
-                    required
-                  />
-                </div>
-
-                <div className="col-md-6 mb-3">
-                  <label className="form-label">Password</label>
-                  <input
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    className="form-control"
-                    placeholder="Enter your password"
-                    required
-                  />
-                </div>
-
-                <div className="col-md-6 mb-4">
-                  <label className="form-label">Profile Image</label>
-                  <input
-                    type="file"
-                    name="image"
-                    onChange={handleChange}
-                    className="form-control"
-                    accept="image/*"
-                    required
-                  />
-                </div>
+                <input type="text" name="name" placeholder="Full Name" onChange={handleChange} required />
+                <input type="email" name="email" placeholder="Email" onChange={handleChange} required />
+                <input type="text" name="mobile" placeholder="Mobile" onChange={handleChange} required />
+                <input type="text" name="nid_number" placeholder="NID Number" onChange={handleChange} required />
+                <input type="password" name="password" placeholder="Password" onChange={handleChange} required />
+                <input type="file" name="image" onChange={handleChange} required />
 
               </div>
 
-              <button type="submit" className="btn btn-primary w-100">
-                Register
-              </button>
+              <button type="submit">Register</button>
 
             </form>
-
-            <div className="mt-4 text-center">
-              <p className="text-muted">
-                Already have an account?{" "}
-                <a href="/rider/login" className="text-primary fw-bold">
-                  Login
-                </a>
-              </p>
-            </div>
 
           </div>
 
         </div>
 
-        <ToastContainer position="top-right" />
+        {/* RIGHT IMAGE SECTION */}
+        <div className="right-section"></div>
+
+        <ToastContainer position="top-right" autoClose={3000} />
 
       </div>
 
+      {/* STYLE */}
+      <style>{`
+        .register-wrapper {
+          display: flex;
+          min-height: 100vh;
+          width: 100%;
+        }
+
+        /* LEFT SIDE */
+        .left-section {
+          flex: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: radial-gradient(circle at center, #0b1220, #111827);
+          position: relative;
+          overflow: hidden;
+        }
+
+        /* RIGHT IMAGE SIDE */
+        .right-section {
+          flex: 1;
+          background: url("/images/rider.png") center/cover no-repeat;
+        }
+
+        /* GLASS CARD */
+        .glass-card {
+          width: 100%;
+          max-width: 600px;
+          padding: 30px;
+
+          border-radius: 18px;
+          background: rgba(255,255,255,0.08);
+          backdrop-filter: blur(25px);
+
+          border: 1px solid rgba(255,255,255,0.15);
+          box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+
+          color: white;
+        }
+
+        .glass-card h2 {
+          text-align: center;
+          margin-bottom: 5px;
+        }
+
+        .glass-card p {
+          text-align: center;
+          font-size: 13px;
+          opacity: 0.7;
+          margin-bottom: 20px;
+        }
+
+        .grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+
+        input {
+          padding: 10px;
+          border-radius: 10px;
+
+          border: 1px solid rgba(255,255,255,0.2);
+          background: rgba(255,255,255,0.06);
+
+          color: white;
+          outline: none;
+        }
+
+        input::placeholder {
+          color: rgba(255,255,255,0.6);
+        }
+
+        button {
+          width: 100%;
+          margin-top: 14px;
+          padding: 12px;
+
+          border: none;
+          border-radius: 12px;
+
+          background: linear-gradient(135deg, #3b82f6, #22c55e);
+          color: white;
+
+          font-weight: 600;
+          cursor: pointer;
+
+          transition: 0.3s;
+        }
+
+        button:hover {
+          transform: translateY(-2px);
+        }
+
+        /* MOBILE VIEW */
+        @media (max-width: 768px) {
+          .right-section {
+            display: none; /* 🔥 hide image on mobile */
+          }
+
+          .left-section {
+            flex: 1 1 100%;
+          }
+
+          .grid {
+            grid-template-columns: 1fr;
+          }
+
+          .glass-card {
+            margin: 20px;
+          }
+        }
+      `}</style>
+
     </PublicLayout>
-
   );
-
 };
 
 export default RiderRegister;
