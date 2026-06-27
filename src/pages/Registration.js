@@ -151,7 +151,7 @@ const Registration = () => {
 
         .right {
           flex: 1;
-          background: url("/images/backgrounu.png") center/cover no-repeat;
+          background: url("/images/login.png") center/cover no-repeat;
         }
 
         /* GLASS CARD */
