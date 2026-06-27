@@ -45,6 +45,7 @@ const LoginUser = () => {
         localStorage.setItem('userToken', data.access);
         localStorage.setItem('userId', data.user.id);
         localStorage.setItem('user', JSON.stringify(data.user));
+        localStorage.setItem("adminId", data.admin_id);
 
         updateUser();
         setFormData({ email_or_mobile: '', password: '' });
