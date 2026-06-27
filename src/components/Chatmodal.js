@@ -86,6 +86,10 @@ const Chatmodal = () => {
   /* ================= SEND ================= */
 
   const sendMessage = async () => {
+    console.log("userId:", userId);
+console.log("adminId:", adminId);
+console.log("token:", token);
+console.log(localStorage.getItem("adminId"));
 
     if (!text.trim() && !imageFile) {
       toast.error("Type message or select image");
