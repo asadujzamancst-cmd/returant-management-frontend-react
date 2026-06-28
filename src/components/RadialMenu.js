@@ -29,7 +29,7 @@ const RadialMenu = () => {
     { icon: <FaUser className="menu-icon" />, path: "/profile" },
     { icon: <FaGear className="menu-icon" />, path: "/change-password" },
 
-    { icon: <FaFacebook className="menu-icon" />, path: "#" },
+    { icon: <FaFacebook className="menu-icon" />, path: "https://www.facebook.com/profile.php?id=61571667248926" },
 
     // ✅ CHAT BUTTON (action)
     {

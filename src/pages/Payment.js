@@ -74,7 +74,11 @@ const Payment = () => {
             </h2>
 
             {/* Address */}
-            <label className="form-label">Shipping Address</label>
+            <label className="form-label">Shipping Address  <br></br>
+
+              First Enter Food Reciver Number To contact with rider
+              <br></br> any problem message admin in chat 
+            </label>
             <textarea
               className="form-control mb-3"
               rows="3"
