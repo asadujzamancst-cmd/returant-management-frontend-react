@@ -74,3 +74,21 @@ input::placeholder{
 .sidebar::-webkit-scrollbar-thumb:hover{
   background:#555;
 }
+
+.card-text::-webkit-scrollbar {
+  width: 4px;
+}
+
+.card-text::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.card-text::-webkit-scrollbar-thumb {
+  background: #dc3545;
+  border-radius: 10px;
+}
+
+.card-text::-webkit-scrollbar-thumb:hover {
+  background: #b02a37;
+}

@@ -102,8 +102,10 @@ useEffect(() => {
       const res = await fetch(
         "https://softworktech.com/asad_ecom/api/random_food/"
       );
+      
 
       const data = await res.json();
+     
       setFoods(data);
 
     } catch (err) {
@@ -233,7 +235,7 @@ useEffect(() => {
             {foods.length === 0 && <p className="text-muted">No food items found.</p>}
 
             {foods.map((food) => (
-              <div key={food.id} className="col-md-4 mb-4 cardHovereffect">
+              <div key={food.id} className="col-md-3 mb-4 cardHovereffect">
                 <div className="card shadow-sm h-100">
                   <div className="position-relative">
                     <img
@@ -246,7 +248,7 @@ useEffect(() => {
                 alt={food.name}
                 style={{
                   width: "100%",
-                  height: "230px",
+                  height: "130px",
                   objectFit: "cover",
                 }}
               />
@@ -273,10 +275,31 @@ useEffect(() => {
                   </div>
 
                   <div className="card-body">
-                    <h5 className="card-title">
-                      <Link to={`/food/${food.id}`}>{food.item_name}</Link>
-                    </h5>
-                    <p className="card-text text-muted">{food.description}</p>
+  <h5 className="mb-3">
+  <Link
+    to={`/food/${food.id}`}
+    className="d-block text-center text-white text-decoration-none fw-bold py-2 rounded"
+    style={{
+      backgroundColor: "#dc3545",
+      fontSize: "18px",
+    }}
+  >
+    {food.name}
+  </Link>
+</h5>
+                    <p className="card-text text-muted "
+                     style={{
+    height: "55px",
+    overflowY: "auto",
+    fontSize: "14px",
+  }}
+                    >
+                      
+                      
+                      {food.description}</p>
+
+
+
 
                    {ratings[food.id] && (
   <div
@@ -324,7 +347,7 @@ useEffect(() => {
                   aria-valuemax="100"
                 ></div>
               </div>
-                  <span className="badge bg-danger">{cartCount}</span>
+                  <span className="badge bg-danger">{count}</span>
 
             </div>
           );
