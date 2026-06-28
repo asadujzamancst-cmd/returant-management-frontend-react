@@ -85,10 +85,10 @@ input::placeholder{
 }
 
 .card-text::-webkit-scrollbar-thumb {
-  background: #dc3545;
+  background: #7d7979;
   border-radius: 10px;
 }
 
 .card-text::-webkit-scrollbar-thumb:hover {
-  background: #b02a37;
+  background: #8a8586;
 }
