@@ -6,6 +6,7 @@ import { Link, useNavigate,useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../style/Track.css";
+import OrderTractStep from "../components/OrderTractStep";
 const Track = () => {
   const [OrderNumber, setOrderNumber] = useState("");
   const [trackingInfo, setTrackingInfo] = useState([]);
@@ -51,6 +52,9 @@ const Track = () => {
   return (
     <PublicLayout>
       <ToastContainer position="top-center" autoClose={1000} />
+      {trackingInfo.order && (
+  <OrderTractStep trackingInfo={trackingInfo} />
+)}
       <div className="container mt-4">
         
         <h3 className="mb-4"><i className="fas fa-map-marker-alt"></i> Track Your Order</h3>
