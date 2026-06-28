@@ -184,6 +184,14 @@ console.log(localStorage.getItem("adminId"));
 
   };
 
+  const handleKeyDown = (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault(); // Enter চাপলে যেন নতুন লাইন (New Line) তৈরি না হয়
+    sendMessage(); // মেসেজ সেন্ড ফাংশন কল হবে
+  }
+};
+
+
   return (
 
     <div style={{
@@ -296,11 +304,14 @@ console.log(localStorage.getItem("adminId"));
         }}
       >
 
-        <input
+        <textarea
           className="form-control"
+          rows='1'
           value={text}
           onChange={(e) => setText(e.target.value)}
+           onKeyDown={handleKeyDown}
           placeholder="Type..."
+          style={{ resize: "none" }}
         />
 
         <input
@@ -309,6 +320,7 @@ console.log(localStorage.getItem("adminId"));
           onChange={(e) =>
             setImageFile(e.target.files[0])
           }
+          style={{ maxWidth: "120px" }}
         />
 
         <button
