@@ -9,6 +9,8 @@ const ViewFoodOrder = () => {
   const { order_number } = useParams();
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+    const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
   useEffect(() => {
     const adminuser = localStorage.getItem('adminuser');
@@ -18,7 +20,6 @@ const ViewFoodOrder = () => {
       navigate('/admin-login');
       return;
     }
-
     const fetchOrder = async () => {
       try {
         const res = await fetch(
@@ -126,12 +127,13 @@ const ViewFoodOrder = () => {
                       <td>{food.item_name}</td>
                       <td>${food.price}</td>
                       <td>
-                        {food.image ? (
-                          <img src={food.image} alt={food.item_name} width={100} />
-                        ) : (
-                          'No image'
-                        )}
-                      </td>
+  {food.image ? (
+    <img src={`${BASE_URL}/${food.image}`} alt={food.item_name} width={100} />
+  ) : (
+    'No image'
+  )}
+</td>
+
                     </tr>
                   ))
                 ) : (
