@@ -181,7 +181,7 @@ const OrderDetails = () => {
                                 <img
                                   src={
                                     item.food?.image
-                                      ? `http://127.0.0.1:8000${item.food.image}`
+                                      ? `https://softworktech.com/asad_ecom/${item.food.image}`
                                       : "https://via.placeholder.com/60"
                                   }
                                   alt=""
