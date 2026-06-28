@@ -1,3 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ২. পুরো বডির ডান-বামের ওভারফ্লো বন্ধ করুন */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+
 .hero-section{
     min-height: 500px;
     background-repeat: no-repeat  ;
