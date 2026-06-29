@@ -237,7 +237,7 @@ const Edit_food = () => {
                 <div className="mb-3">
                   <p>Current Image:</p>
                   <img
-                    src={`http://127.0.0.1:8000${oldImage}`}
+                    src={`$https://softworktech.com/asad_ecom/{oldImage}`}
                     alt="food"
                     width="80"
                   />
