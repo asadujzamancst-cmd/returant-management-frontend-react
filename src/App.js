@@ -52,6 +52,7 @@ import AdminResetPassword from './pages/AdminResetPassword';
 import AdminForgotPassword from './pages/AdminForgotPassword';
 import Rider_forgot_password from './pages/RiderForgotPassword';
 import Rider_reset_password from './pages/RiderResetPassword';
+import Offer from './pages/Offer';
 
 function App() {
   return (
@@ -134,7 +135,7 @@ function App() {
         <Route path="/rider/dashboard" element={<RiderDashbord />} />
                 <Route path="/riderFood" element={<RiderPickupFood />} />
                 
-
+<Route path="/offer" element={<Offer />} />
 
             
 

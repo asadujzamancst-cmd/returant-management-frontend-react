@@ -15,7 +15,8 @@ import {
   FaUtensils,
   FaRightFromBracket,
   FaHeart,
-  FaUser
+  FaUser,
+  FaPercent 
 } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -62,6 +63,9 @@ const { isLogged, user, cartCount } = useContext(AuthContext);
 
               <li className="nav-item">
                 <NavLink className="nav-link" to="/"><FaHouse className="me-1" /> Home</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/offer"><FaPercent  className="me-1" /> offer</NavLink>
               </li>
 
               <li className="nav-item">
