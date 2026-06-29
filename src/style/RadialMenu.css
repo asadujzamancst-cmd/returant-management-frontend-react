@@ -64,3 +64,24 @@
   transition: height 0.3s ease;
   z-index: 0;
 }
+.menu-text {
+    position: absolute;
+    right: 60px;
+    background: #0a2c3d;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: all .3s ease;
+}
+
+.radial-menu-item:hover .menu-text {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}

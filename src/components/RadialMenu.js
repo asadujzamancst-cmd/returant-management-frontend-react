@@ -20,21 +20,25 @@ const RadialMenu = () => {
   const toggleMenu = () => setOpen(!open);
 
   const items = [
-    { icon: <FaHouse className="menu-icon" />, path: "/" },
+    { icon: <FaHouse className="menu-icon" />, path: "/",label:'home' },
 
     // ❌ FIX: extra space remove
-    { icon: <FaTruck className="menu-icon" />, path: "/track" },
+    { icon: <FaTruck className="menu-icon" />, path: "/track" , label:'track'},
 
-    { icon: <FaUtensils className="menu-icon" />, path: "/menu" },
-    { icon: <FaUser className="menu-icon" />, path: "/profile" },
-    { icon: <FaGear className="menu-icon" />, path: "/change-password" },
+    { icon: <FaUtensils className="menu-icon" />, path: "/menu",label:"menu" },
+    { icon: <FaUser className="menu-icon" />, path: "/profile",label:'profile' },
+    { icon: <FaGear className="menu-icon" />, path: "/change-password",label:'setting' },
 
-    { icon: <FaFacebook className="menu-icon" />, path: "https://www.facebook.com/profile.php?id=61571667248926" },
+    { icon: <FaFacebook className="menu-icon" />, path: "https://www.facebook.com/profile.php?id=61571667248926",
+          label: "Facebook",
+
+     },
 
     // ✅ CHAT BUTTON (action)
     {
       icon: <FaComment className="menu-icon" />,
       action: () => setShowChat(true),
+      label:'chat'
     },
   ];
 
@@ -86,6 +90,8 @@ const RadialMenu = () => {
                   }}
                 >
                   {item.icon}
+                    <span className="menu-text">{item.label}</span>
+
                 </Link>
               ) : (
                 <button
@@ -99,6 +105,8 @@ const RadialMenu = () => {
                   }}
                 >
                   {item.icon}
+                    <span className="menu-text">{item.label}</span>
+
                 </button>
               )}
 

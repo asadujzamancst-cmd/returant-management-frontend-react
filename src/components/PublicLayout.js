@@ -46,7 +46,7 @@ const { isLogged, user, cartCount } = useContext(AuthContext);
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark shadow fixed-top">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             <FaUtensils className="me-2" />
@@ -132,7 +132,7 @@ const { isLogged, user, cartCount } = useContext(AuthContext);
         </div>
       </nav>
 
-      <div className="container-fluid p-0">{children}</div>
+      <div className="container-fluid p-0" style={{ marginTop: "55px" }}>{children}</div>
       <RadialMenu />
 
       <footer className="  text-center py-3">
