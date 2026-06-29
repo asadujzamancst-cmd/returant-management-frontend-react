@@ -38,6 +38,8 @@ const Edit_food = () => {
     fetch(`https://softworktech.com/asad_ecom/api/foods/${id}/`)
       .then((res) => res.json())
       .then((data) => {
+          console.log(data);      // এটা দেখো
+  console.log(data.image);
         setFormData({
           category: data.category || "",
           name: data.name || "",
@@ -237,7 +239,7 @@ const Edit_food = () => {
                 <div className="mb-3">
                   <p>Current Image:</p>
                   <img
-                    src={`$https://softworktech.com/asad_ecom/{oldImage}`}
+  src={`https://softworktech.com/asad_ecom${oldImage}`}
                     alt="food"
                     width="80"
                   />
