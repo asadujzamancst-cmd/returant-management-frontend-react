@@ -11,6 +11,8 @@ const CartD = () => {
   const [loading, setLoading] = useState(true);
   const [grandTotal, setGrandTotal] = useState(0);
   const token = localStorage.getItem("userToken");
+        const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
   // Helper: Get correct price based on offer
   const getItemPrice = (item) => {
@@ -152,12 +154,16 @@ const CartD = () => {
                   >
                     <div className="row g-0 align-items-center p-3">
                       <div className="col-3">
-                        <img
-                          src={item.food_image || "https://via.placeholder.com/100"}
-                          alt={item.food_name}
-                          className="img-fluid rounded"
-                          style={{ maxHeight: "100px", objectFit: "cover" }}
-                        />
+                       <img
+  src={
+    item.food_image
+      ? `${BASE_URL}${item.food_image}`
+      : "https://via.placeholder.com/100"
+  }
+  alt={item.food_name}
+  className="img-fluid rounded"
+  style={{ maxHeight: "100px", objectFit: "cover" }}
+/>
                       </div>
                       <div className="col-5 ps-3">
                         <h6 className="mb-1">{item.food_name}</h6>

@@ -10,6 +10,8 @@ const PageSearch = () => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const query = params.get("q") || "";
+      const BASE_URL = "https://softworktech.com/asad_ecom";
+
 
   const [foods, setFoods] = useState([]);
     const [wishlist, setWishlist] = useState([]);
@@ -142,12 +144,18 @@ useEffect(() => {
             <div key={food.id} className="col-md-4 mb-4 cardHovereffect">
               <div className="card shadow-sm h-100">
                  <div className="position-relative">
-                    <img
-                      src={food.image || "/images/default-food.png"}
-                      className="card-img-top"
-                      alt={food.item_name}
-                      style={{ height: "200px", objectFit: "cover" }}
-                    />
+                  
+                                        <img
+                    style={{ height: "200px", objectFit: "cover" }}
+
+                src={
+                  food.image
+                    ? `${BASE_URL}${food.image}`
+                    : "/images/default-food.png"
+                    
+                }
+                className="card-img-top"
+                alt={food.item_name} ></img>
                     <i
                       className={`heart fas fa-heart position-absolute top-0 end-0 m-2 ${
                         wishlist.includes(food.id) ? "text-danger" : "text-white"
