@@ -1,149 +1,215 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import React, { useState, useEffect } from 'react';
+import AdminLayout from '../components/AdminLayout';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const AddTableModal = ({ show, handleClose }) => {
-  const navigate = useNavigate();
-
-  const [tableNumber, setTableNumber] = useState("");
-  const [capacity, setCapacity] = useState("");
-  const [status, setStatus] = useState("available");
+const AddFood = () => {
+  const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const BASE_URL = "https://softworktech.com/asad_ecom";
+  const [formData, setFormData] = useState({
+    category: '',
+    item_name: '',
+    description: '',
+    price: '',
+    item_quantity: '',
+    is_available: true,
+    image: null
+  });
 
-  const addTable = async () => {
-    if (loading) return;
+  // Load categories
+  useEffect(() => {
+    const token = localStorage.getItem('adminToken');
+    fetch('https://msts.live/api/list-category/', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+      .then(res => res.json())
+      .then(data => setCategories(data))
+      .catch(() => toast.error('Failed to load categories'));
+  }, []);
 
-    if (!tableNumber || !capacity) {
-      toast.error("Please fill all fields");
-      return;
-    }
+  const handleChange = (e) => {
+    const { name, value, type, checked, files } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox'
+        ? checked
+        : type === 'file'
+        ? files[0]
+        : value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+
+    // Map frontend fields to backend fields
+    data.append('category', formData.category);
+    data.append('name', formData.item_name); // ✅ Fixed
+    data.append('quantity', formData.item_quantity); // ✅ Fixed
+    if (formData.description) data.append('description', formData.description);
+    if (formData.price) data.append('price', formData.price);
+    data.append('is_available', formData.is_available);
+
+    if (formData.image) data.append('image', formData.image);
+
+    setLoading(true);
 
     try {
-      setLoading(true);
-
-      const token = localStorage.getItem("adminToken");
-
-      if (!token) {
-        toast.error("Admin login required");
-        navigate("/admin-login");
-        return;
-      }
-
-      const res = await axios.post(
-        `${BASE_URL}/table/admin/add-table/`,
-        {
-          table_number: tableNumber,
-          capacity: Number(capacity),
-          status: status,
+      const token = localStorage.getItem('adminToken');
+      const res = await fetch('https://msts.live/api/add-fooditems/', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
+        body: data
+      });
 
-      toast.success(res.data.message || "Table Added Successfully");
+      const result = await res.json();
+      console.log('Backend response:', result);
 
-      // clear form
-      setTableNumber("");
-      setCapacity("");
-      setStatus("available");
-
-      // close modal
-      handleClose();
-
-      // go manage table page
-      setTimeout(() => {
-        navigate("/manage-table");
-      }, 1000);
-    } catch (error) {
-      console.log("ADD TABLE ERROR:", error.response?.data);
-
-      if (error.response?.status === 401) {
-        toast.error("Login expired. Please login again");
-        localStorage.removeItem("adminToken");
-        navigate("/admin-login");
-      } else if (error.response?.status === 403) {
-        toast.error("You don't have admin permission");
+      if (res.status === 201) {
+        toast.success('Food item added successfully!');
+        setFormData({
+          category: '',
+          item_name: '',
+          description: '',
+          price: '',
+          item_quantity: '',
+          is_available: true,
+          image: null
+        });
       } else {
-        toast.error(error.response?.data?.detail || "Table add failed");
+        const errors = Object.values(result).flat().join(', ');
+        toast.error(errors || 'Failed to add food item');
       }
+    } catch (err) {
+      toast.error('Server error!');
+      console.error(err);
     } finally {
       setLoading(false);
     }
   };
 
-  if (!show) {
-    return null;
-  }
-
   return (
-    <div
-      className="modal fade show d-block"
-      style={{
-        background: "rgba(0,0,0,0.5)",
-      }}
-    >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content rounded-4">
-          <div className="modal-header">
-            <h5 className="fw-bold">Add Restaurant Table</h5>
+    <AdminLayout>
+      <ToastContainer position="top-center" autoClose={2000} />
 
-            <button className="btn-close" onClick={handleClose}></button>
-          </div>
+      <div className="row justify-content-center mt-4">
+        <div className="col-md-8">
+          <div className="p-4 shadow rounded bg-white">
+            <h4 className="mb-4 text-primary">
+              <i className="fas fa-hamburger me-2"></i>
+              Add Food Item
+            </h4>
 
-          <div className="modal-body">
-            <label className="fw-bold">Table Number</label>
-            <input
-              type="text"
-              className="form-control mb-3"
-              placeholder="Example T1"
-              value={tableNumber}
-              onChange={(e) => setTableNumber(e.target.value)}
-            />
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
 
-            <label className="fw-bold">Capacity</label>
-            <input
-              type="number"
-              className="form-control mb-3"
-              placeholder="Number of seats"
-              value={capacity}
-              onChange={(e) => setCapacity(e.target.value)}
-            />
+              {/* Category */}
+              <div className="mb-3">
+                <label className="form-label">Category</label>
+                <select
+                  name="category"
+                  className="form-control"
+                  value={formData.category}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="">Select Category</option>
+                  {categories.map(cat => (
+                    <option key={cat.id} value={cat.id}>{cat.category_name}</option>
+                  ))}
+                </select>
+              </div>
 
-            <label className="fw-bold">Status</label>
-            <select
-              className="form-control"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-            >
-              <option value="available">Available</option>
-              <option value="inactive">Inactive</option>
-            </select>
-          </div>
+              {/* Item Name */}
+              <div className="mb-3">
+                <label className="form-label">Food Name</label>
+                <input
+                  type="text"
+                  name="item_name"
+                  className="form-control"
+                  value={formData.item_name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
 
-          <div className="modal-footer">
-            <button className="btn btn-secondary" onClick={handleClose}>
-              Close
-            </button>
+              {/* Description */}
+              <div className="mb-3">
+                <label className="form-label">Description</label>
+                <textarea
+                  name="description"
+                  className="form-control"
+                  value={formData.description}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <button
-              className="btn btn-warning fw-bold"
-              onClick={addTable}
-              disabled={loading}
-            >
-              {loading ? "Adding..." : "Add Table"}
-            </button>
+              {/* Price */}
+              <div className="mb-3">
+                <label className="form-label">Price</label>
+                <input
+                  type="number"
+                  step="0.01"
+                  name="price"
+                  className="form-control"
+                  value={formData.price}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              {/* Quantity */}
+              <div className="mb-3">
+                <label className="form-label">Quantity</label>
+                <input
+                  type="text"
+                  name="item_quantity"
+                  className="form-control"
+                  value={formData.item_quantity}
+                  onChange={handleChange}
+                />
+              </div>
+
+              {/* Image */}
+              <div className="mb-3">
+                <label className="form-label">Food Image</label>
+                <input
+                  type="file"
+                  name="image"
+                  className="form-control"
+                  onChange={handleChange}
+                />
+              </div>
+
+              {/* Availability */}
+              <div className="form-check mb-3">
+                <input
+                  type="checkbox"
+                  name="is_available"
+                  className="form-check-input"
+                  checked={formData.is_available}
+                  onChange={handleChange}
+                />
+                <label className="form-check-label">Available</label>
+              </div>
+
+              {/* Submit */}
+              <button className="btn btn-primary w-100" disabled={loading}>
+                {loading ? 'Adding...' : 'Add Food'}
+              </button>
+
+            </form>
           </div>
         </div>
       </div>
-    </div>
+    </AdminLayout>
   );
 };
 
-export default AddTableModal;
+export default AddFood;
