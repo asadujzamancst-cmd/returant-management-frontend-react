@@ -2,7 +2,7 @@
 import './App.css';
 import AdminLogin from './pages/AdminLogin';
 import Home from './pages/Home';
-import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import { BrowserRouter , Route, Router, Routes } from 'react-router-dom';
 import AdminDashbord from './pages/AdminDashbord';
 import AddCatagory from './pages/AddCatagory';
 import ManageCatagory from './pages/ManageCatagory';
@@ -53,7 +53,10 @@ import AdminForgotPassword from './pages/AdminForgotPassword';
 import Rider_forgot_password from './pages/RiderForgotPassword';
 import Rider_reset_password from './pages/RiderResetPassword';
 import Offer from './pages/Offer';
-
+import BookTable from './pages/BookTable';
+import ManageTable from './pages/ManageTable';
+import MyBooking from "./pages/MyBooking";
+import AllConfirmTable from './pages/AllConfirmTable';
 function App() {
   return (
     <div className="App">
@@ -66,6 +69,10 @@ function App() {
           <Route path='/admin-dashboard' element={<AdminDashbord/>}/>
           <Route path="/riderOrder" element={<AdminRiderOrders />} />
                     <Route path="/managerider" element={<AdminRiderManagement />} />
+
+
+
+ 
 
 
            <Route path='/add-catagory' element={<AddCatagory/>}/>
@@ -103,7 +110,13 @@ function App() {
 <Route path="/menu" element={<FoodMenu />} />
 <Route path="/whishlist" element={<Wishlist />} />
 
-
+ <Route path="/book-table" element={<BookTable/>}/>
+ <Route path="/manage-table" element={<ManageTable/>}/>
+<Route
+ path="/my-booking"
+ element={<MyBooking/>}
+/> 
+<Route path="/AllConfirmBooking" element={<AllConfirmTable/>}/>
 //chat
 <Route path="/chat" element={<Chat />} />
 <Route path="/chat-modal" element={<Chatmodal />} />

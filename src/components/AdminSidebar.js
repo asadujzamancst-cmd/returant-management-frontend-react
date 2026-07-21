@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { Link } from 'react-router-dom'
 import "../style/Home.css";
 
-import { FaChevronCircleDown, FaChevronCircleUp, FaComment, FaEdit, FaFile, FaList, FaSearch, FaThLarge, FaUser } from 'react-icons/fa'
+import { FaChevronCircleDown,FaTable, FaChevronCircleUp, FaComment, FaEdit, FaFile, FaList, FaSearch, FaThLarge, FaUser } from 'react-icons/fa'
 
 const AdminSidebar = () => {
 
@@ -75,7 +75,7 @@ const toggleMenu = (menu) =>{
         </div>  
                  <button onClick={()=>toggleMenu('foodCategoryOpen')} className='list-group-item list-group-item-action bg-dark text-white'>
 
-            <FaEdit/>Food  Category {menuopen.foodCategoryOpen ? <FaChevronCircleUp/> : <FaChevronCircleDown/>}
+            <FaEdit/>Food   {menuopen.foodCategoryOpen ? <FaChevronCircleUp/> : <FaChevronCircleDown/>}
         </button>
         {menuopen.foodCategoryOpen &&(
         <div className='ps-4'>   
@@ -92,8 +92,22 @@ const toggleMenu = (menu) =>{
           <div className='list-group list-group-flush'>
             <Link to={'/orderSearch'} className='list-group-item list-group-item-action bg-dark text-white'>
            <FaSearch/>  Search</Link>
+    
 
         </div>  
+          <div className='list-group list-group-flush'>
+            <Link to={'/manage-table'} className='list-group-item list-group-item-action bg-dark text-white'>
+           <FaTable/>  manage table</Link>
+    
+
+        </div> 
+         <div className='list-group list-group-flush'>
+            <Link to={'/AllConfirmBooking'} className='list-group-item list-group-item-action bg-dark text-white'>
+           <FaTable/>  confirm table</Link>
+    
+
+        </div> 
+
         <div className='list-group list-group-flush'>
             <Link to={'/riderOrder'} className='list-group-item list-group-item-action bg-dark text-white'>
             Rider manage food</Link>

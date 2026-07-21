@@ -16,7 +16,8 @@ import {
   FaRightFromBracket,
   FaHeart,
   FaUser,
-  FaPercent 
+  FaPercent ,
+  FaTable,
 } from "react-icons/fa6";
 import { FaShoppingCart } from "react-icons/fa";
 
@@ -66,6 +67,9 @@ const { isLogged, user, cartCount } = useContext(AuthContext);
               </li>
               <li className="nav-item">
                 <NavLink className="nav-link" to="/offer"><FaPercent  className="me-1" /> offer</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/book-table"><FaTable  className="me-1" /> Book Table</NavLink>
               </li>
 
               <li className="nav-item">

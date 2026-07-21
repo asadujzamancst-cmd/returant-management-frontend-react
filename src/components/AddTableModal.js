@@ -1,11 +1,10 @@
+// src/components/AddTableModal.js
+
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AddTableModal = ({ show, handleClose }) => {
-  const navigate = useNavigate();
-
   const [tableNumber, setTableNumber] = useState("");
   const [capacity, setCapacity] = useState("");
   const [status, setStatus] = useState("available");
@@ -14,8 +13,6 @@ const AddTableModal = ({ show, handleClose }) => {
   const BASE_URL = "https://softworktech.com/asad_ecom";
 
   const addTable = async () => {
-    if (loading) return;
-
     if (!tableNumber || !capacity) {
       toast.error("Please fill all fields");
       return;
@@ -24,15 +21,15 @@ const AddTableModal = ({ show, handleClose }) => {
     try {
       setLoading(true);
 
+      // ✅ admin token
       const token = localStorage.getItem("adminToken");
 
       if (!token) {
         toast.error("Admin login required");
-        navigate("/admin-login");
         return;
       }
 
-      const res = await axios.post(
+      const response = await axios.post(
         `${BASE_URL}/table/admin/add-table/`,
         {
           table_number: tableNumber,
@@ -47,31 +44,22 @@ const AddTableModal = ({ show, handleClose }) => {
         }
       );
 
-      toast.success(res.data.message || "Table Added Successfully");
+      toast.success(response.data.message || "Table Added Successfully");
 
-      // clear form
       setTableNumber("");
       setCapacity("");
       setStatus("available");
 
-      // close modal
       handleClose();
-
-      // go manage table page
-      setTimeout(() => {
-        navigate("/manage-table");
-      }, 1000);
     } catch (error) {
-      console.log("ADD TABLE ERROR:", error.response?.data);
+      console.log("Table Add Error:", error.response?.data);
 
       if (error.response?.status === 401) {
-        toast.error("Login expired. Please login again");
-        localStorage.removeItem("adminToken");
-        navigate("/admin-login");
+        toast.error("Unauthorized! Admin login required");
       } else if (error.response?.status === 403) {
         toast.error("You don't have admin permission");
       } else {
-        toast.error(error.response?.data?.detail || "Table add failed");
+        toast.error("Table add failed");
       }
     } finally {
       setLoading(false);
