@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   FaCalendarDays,
@@ -115,6 +115,10 @@ const BookTable = () => {
   return (
     <PublicLayout>
       <div className="container py-5 mt-5">
+
+                <Link to="/my-booking" className="btn btn-warning mb-4">
+          My Booking
+        </Link>
         <h1 className="text-center fw-bold mb-3">Reserve Your Table</h1>
 
         <p className="text-center text-muted mb-5">Select date and time</p>

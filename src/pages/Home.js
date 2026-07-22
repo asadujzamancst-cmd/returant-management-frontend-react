@@ -105,7 +105,7 @@ useEffect(() => {
       
 
       const data = await res.json();
-     
+    
       setFoods(data);
 
     } catch (err) {
@@ -235,7 +235,7 @@ useEffect(() => {
             {foods.length === 0 && <p className="text-muted">No food items found.</p>}
 
             {foods.map((food) => (
-              <div key={food.id} className="col-md-3 mb-4 cardHovereffect">
+              <div key={food.id} className="col-md-4 mb-4 cardHovereffect">
                 <div className="card shadow-sm h-100">
                   <div className="position-relative">
                     <img
@@ -386,7 +386,7 @@ useEffect(() => {
                           className="btn btn-outline-primary btn-sm"
                         >
                           <i className="fas fa-shopping-basket me-1"></i>
-                          Order Now
+                          view
                         </Link>
                       ) : (
                         <span className="text-danger fw-bold">Out of Stock</span>
