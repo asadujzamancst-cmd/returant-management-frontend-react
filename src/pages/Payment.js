@@ -76,13 +76,12 @@ const Payment = () => {
             {/* Address */}
             <label className="form-label">Shipping Address  <br></br>
 
-              First Enter Food Reciver Number To contact with rider
-              <br></br> any problem message admin in chat 
+              
             </label>
             <textarea
               className="form-control mb-3"
               rows="3"
-              placeholder="Enter your full address"
+              placeholder="Enter your full address with mobile number for delivery"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
             />
