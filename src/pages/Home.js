@@ -235,7 +235,7 @@ useEffect(() => {
             {foods.length === 0 && <p className="text-muted">No food items found.</p>}
 
             {foods.map((food) => (
-              <div key={food.id} className="col-md-4 mb-4 cardHovereffect">
+              <div key={food.id} className="col-lg-3 mb-4 cardHovereffect">
                 <div className="card shadow-sm h-100">
                   <div className="position-relative">
                     <img
@@ -248,7 +248,7 @@ useEffect(() => {
                 alt={food.name}
                 style={{
                   width: "100%",
-                  height: "130px",
+                  height: "160px",
                   objectFit: "cover",
                 }}
               />
